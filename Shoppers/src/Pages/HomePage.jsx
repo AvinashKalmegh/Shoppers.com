@@ -20,7 +20,7 @@ const HomePage = ()=>{
             <Container5 />
             <Container6 />
             <Container7 />
-            <Container8 />
+            {/* <Container8 /> */}
             <Footer />
         </div>
     )
