@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 import {
   Box,
   Flex,
@@ -15,19 +15,25 @@ import {
   Stack,
   useColorMode,
   Center,
-} from '@chakra-ui/react';
-import { MoonIcon, SunIcon } from '@chakra-ui/icons';
+  Text,
+  Image
+} from "@chakra-ui/react";
+import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+import { IoBagOutline } from "react-icons/io5";
+import { FaRegUser } from "react-icons/fa";
+import { Link as RouterLink } from "react-router-dom";
 
 const NavLink = ({ children }) => (
   <Link
     px={2}
     py={1}
-    rounded={'md'}
+    rounded={"md"}
     _hover={{
-      textDecoration: 'none',
-      bg: useColorModeValue('gray.200', 'gray.700'),
+      textDecoration: "none",
+      bg: useColorModeValue("gray.200", "gray.700"),
     }}
-    href={'#'}>
+    href={"#"}
+  >
     {children}
   </Link>
 );
@@ -37,48 +43,28 @@ export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
-        <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-          <Box>Logo</Box>
+      <RouterLink to={"/login"}>
+        <Button ml={"1350"} bgColor={"transparent"}>
+          <FaRegUser /> Sign In / Sign Up
+        </Button>
+      </RouterLink>
 
-          <Flex alignItems={'center'}>
-            <Stack direction={'row'} spacing={7}>
+      <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
+        <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
+          <Box><img src="logo.png" alt="logo" /></Box>
+          <RouterLink to={"/"}>
+            <Text>Home</Text>
+          </RouterLink>
+          <RouterLink to={"/products"}>
+            <Text>Dresses</Text>
+          </RouterLink>
+          <Flex alignItems={"center"}>
+            <Stack direction={"row"} spacing={7}>
               <Button onClick={toggleColorMode}>
-                {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+                {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
               </Button>
-
-              <Menu>
-                <MenuButton
-                  as={Button}
-                  rounded={'full'}
-                  variant={'link'}
-                  cursor={'pointer'}
-                  minW={0}>
-                  <Avatar
-                    size={'sm'}
-                    src={'https://avatars.dicebear.com/api/male/username.svg'}
-                  />
-                </MenuButton>
-                <MenuList alignItems={'center'}>
-                  <br />
-                  <Center>
-                    <Avatar
-                      size={'2xl'}
-                      src={'https://avatars.dicebear.com/api/male/username.svg'}
-                    />
-                  </Center>
-                  <br />
-                  <Center>
-                    <p>Username</p>
-                  </Center>
-                  <br />
-                  <MenuDivider />
-                  <MenuItem>Your Servers</MenuItem>
-                  <MenuItem>Account Settings</MenuItem>
-                  <MenuItem>Logout</MenuItem>
-                </MenuList>
-              </Menu>
             </Stack>
+            <IoBagOutline size={"20"} />
           </Flex>
         </Flex>
       </Box>

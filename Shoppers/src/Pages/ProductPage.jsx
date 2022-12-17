@@ -1,6 +1,42 @@
+import { useEffect, useState } from "react";
+import axios from "axios"
+import { Container, SimpleGrid } from "@chakra-ui/react";
+import ProductCard from "../Components/ProductCard";
+
+
 const ProductPage = ()=>{
+ const [data, setData] = useState([]);
+    useEffect(()=>{
+        axios.get("https://fakestoreapi.com/products?limit=5")
+        .then((res)=>{
+            setData(res.data)
+            // console.log(res.data)
+        })
+        .catch((err)=> console.log(err))
+    },[])
+    console.log(data)
+
     return (
-        <div></div>
+        <div>
+            <Container maxW={"7xl"}>
+            <SimpleGrid  columns={{base:1,sm:1,md:4}} spacing={4}>
+              {data?.length>0 && data.map((ele)=>{
+                return (
+                    <ProductCard key={ele.id}
+                    category={ele.category}
+                    title={ele.title}
+                    id={ele.id}
+                    description={ele.description}
+                    price={ele.price}
+                    image={ele.image}
+                    />
+
+                )
+              })}
+            </SimpleGrid>
+            </Container>
+           
+        </div>
     )
 }
 
