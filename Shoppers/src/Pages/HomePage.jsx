@@ -12,7 +12,7 @@ import Container8 from "../Components/HomeContent/Container8";
 const HomePage = ()=>{
     return (
         <div>
-            <Navbar />
+           
             <Container1 />
             <Container2 />
             <Container3 />
@@ -21,7 +21,7 @@ const HomePage = ()=>{
             <Container6 />
             <Container7 />
             {/* <Container8 /> */}
-            <Footer />
+           
         </div>
     )
 }
