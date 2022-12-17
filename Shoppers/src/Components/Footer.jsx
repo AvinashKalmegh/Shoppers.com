@@ -27,7 +27,9 @@ import {
   
   export default function Footer() {
     return (
-      <Box
+      <Box 
+       //pos={"fixed"}
+       mb={0}
         bg={useColorModeValue('gray.50', 'gray.900')}
         color={useColorModeValue('gray.700', 'gray.200')}>
         <Container fontSize={'xs'} as={Stack} maxW={'6xl'} py={10}>

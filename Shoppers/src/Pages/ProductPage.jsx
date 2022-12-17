@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios"
-import { Container, SimpleGrid } from "@chakra-ui/react";
+import { Container, Flex, SimpleGrid } from "@chakra-ui/react";
 import ProductCard from "../Components/ProductCard";
+import Sidebar from "../Components/SideBar";
 
 
 const ProductPage = ()=>{
@@ -17,8 +18,10 @@ const ProductPage = ()=>{
     console.log(data)
 
     return (
-        <div>
-            <Container maxW={"7xl"}>
+        <div style={{marginTop:"130px"}}>
+           <Flex>
+            <Sidebar/>
+           <Container maxW={"7xl"}>
             <SimpleGrid  columns={{base:1,sm:1,md:4}} spacing={4}>
               {data?.length>0 && data.map((ele)=>{
                 return (
@@ -35,6 +38,8 @@ const ProductPage = ()=>{
               })}
             </SimpleGrid>
             </Container>
+           </Flex>
+           
            
         </div>
     )

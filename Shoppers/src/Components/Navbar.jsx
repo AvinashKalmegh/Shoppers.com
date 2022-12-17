@@ -16,7 +16,7 @@ import {
   useColorMode,
   Center,
   Text,
-  Image
+  Image,Container
 } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { IoBagOutline } from "react-icons/io5";
@@ -42,9 +42,9 @@ export default function Navbar() {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <>
+    <Container bgColor={"white"} pos={"fixed"} zIndex={"10"} top={"0"} maxW={"100%"} border={"0px solid red"} >
       <RouterLink to={"/login"}>
-        <Button ml={"1350"} bgColor={"transparent"}>
+        <Button ml={"1325"} bgColor={"transparent"}>
           <FaRegUser /> Sign In / Sign Up
         </Button>
       </RouterLink>
@@ -64,10 +64,12 @@ export default function Navbar() {
                 {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
               </Button>
             </Stack>
-            <IoBagOutline size={"20"} />
+           <RouterLink to={"/cart"}>
+           <IoBagOutline size={"20"} />
+            </RouterLink> 
           </Flex>
         </Flex>
       </Box>
-    </>
+    </Container>
   );
 }
