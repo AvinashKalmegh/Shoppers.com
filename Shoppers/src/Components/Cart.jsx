@@ -26,7 +26,7 @@ export default function Cart() {
 
   useEffect(() => {
     axios
-      .get(`https://fakestoreapi.com/products/${id}`)
+      .get(`https://shoppers-in.onrender.com/dresses/${id}`)
       .then((res) => {
         setCart(res.data);
       })

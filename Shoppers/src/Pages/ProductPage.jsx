@@ -8,7 +8,7 @@ import Sidebar from "../Components/SideBar";
 const ProductPage = ()=>{
  const [data, setData] = useState([]);
     useEffect(()=>{
-        axios.get("https://fakestoreapi.com/products?limit=5")
+        axios.get("https://shoppers-in.onrender.com/dresses")
         .then((res)=>{
             setData(res.data)
             // console.log(res.data)
