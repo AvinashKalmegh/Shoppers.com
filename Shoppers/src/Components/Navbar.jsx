@@ -23,20 +23,7 @@ import { IoBagOutline } from "react-icons/io5";
 import { FaRegUser } from "react-icons/fa";
 import { Link as RouterLink } from "react-router-dom";
 
-const NavLink = ({ children }) => (
-  <Link
-    px={2}
-    py={1}
-    rounded={"md"}
-    _hover={{
-      textDecoration: "none",
-      bg: useColorModeValue("gray.200", "gray.700"),
-    }}
-    href={"#"}
-  >
-    {children}
-  </Link>
-);
+
 
 export default function Navbar() {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -50,14 +37,25 @@ export default function Navbar() {
       </RouterLink>
 
       <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
-        <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
-          <Box><img src="logo.png" alt="logo" /></Box>
+        <Flex border={"0px solid red"} h={16} alignItems={"center"} justifyContent={"space-evenly"}>
           <RouterLink to={"/"}>
-            <Text>Home</Text>
+          <Box cursor={"pointer"} w={"15%"}><img src="https://drive.google.com/uc?export=view&id=1i7BmWXqMX7xL-dnWEJ8pSm0OXPhbW-7u" alt="logo" /></Box>
+          </RouterLink>
+         
+          <RouterLink to={"/"}>
+            <Text _hover={{color:"green"}}>Home</Text>
           </RouterLink>
           <RouterLink to={"/products"}>
-            <Text>Dresses</Text>
+            <Text  _hover={{color:"green"}}>Dresses</Text>
           </RouterLink>
+          <RouterLink >
+            <Text  _hover={{color:"green"}}>Accessories</Text>
+          </RouterLink>
+          <RouterLink>
+            <Text  _hover={{color:"green"}}>Shoes</Text>
+          </RouterLink>
+         
+         
           <Flex alignItems={"center"}>
             <Stack direction={"row"} spacing={7}>
               <Button onClick={toggleColorMode}>

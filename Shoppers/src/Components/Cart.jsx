@@ -14,6 +14,12 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Modal from "./Modal";
+import Total from "./Total";
+
+let cartData = JSON.parse(localStorage.getItem("cartProduct")) || [];
+console.log(cartData);
+console.log(cartData[0].title)
+
 
 export default function Cart() {
   const { id } = useParams();
@@ -33,127 +39,112 @@ export default function Cart() {
       .catch((err) => console.log(err));
   }, [id]);
 
-  const { category, image, title, price, description } = cart;
+  //const { category, image, title, price, description } = cart;
 
   return (
     <div style={{ marginTop: "170px", marginBottom: "70px" }}>
-      <SimpleGrid
-        justifyContent={"center"}
-        align={"center"}
-        margin={"auto"}
-        maxW={"8xl"}
-        border={"0px solid red"}
-        columns={{ base: 1, sm: 1, md: 2 }}
-        columnGap={10}
-        spacing={9}
-      >
-        <Box
-          role={"group"}
-          p={6}
-          //   maxW={'330px'}
-          w={"full"}
-          bg={useColorModeValue("white", "gray.800")}
-          boxShadow={"2xl"}
-          rounded={"lg"}
-          pos={"relative"}
-          zIndex={1}
+    
+
+     {cartData.map((ele) => (
+        <SimpleGrid
+          // justifyContent={"space-between"}
+          // align={"center"}
+          margin={"auto"}
+          maxW={"100%"}
+          border={"0px solid red"}
+          columns={{ base: 1, sm: 1, md: 2 }}
+          columnGap={10}
+          spacing={9}
         >
-          <Box
-            rounded={"lg"}
-            mt={-12}
+          <Flex
+            // alignItems={"flex-start"}
+            border={"0px solid grey"}
+            role={"group"}
+            p={2}
+            //   maxW={'330px'}
+            maxW={"100%"}
+            ml={"30px"}
+            //bg={useColorModeValue("white", "gray.800")}
+            boxShadow={"xl"}
+            rounded={"0g"}
             pos={"relative"}
-            height={"230px"}
-            _after={{
-              transition: "all .3s ease",
-              content: '""',
-              w: "full",
-              h: "full",
-              pos: "absolute",
-              top: 5,
-              left: 0,
-
-              filter: "blur(15px)",
-              zIndex: -1,
-            }}
-            _groupHover={{
-              _after: {
-                filter: "blur(20px)",
-              },
-            }}
+            zIndex={1}
           >
-            <Image
+            <Box
+              border={"0px solid black"}
               rounded={"lg"}
-              height={230}
-              width={282}
-              objectFit={"cover"}
-              src={image}
-            />
-          </Box>
-          <Stack pt={10} align={"center"}>
-            <Text
-              color={"gray.500"}
-              fontSize={"sm"}
-              textTransform={"uppercase"}
-            >
-              {category}
-            </Text>
-            <Heading fontSize={"2xl"} fontFamily={"body"} fontWeight={500}>
-              {title}
-            </Heading>
-            <Stack direction={"row"} align={"center"}>
-              <Text fontWeight={800} fontSize={"xl"}>
-                {price}
-              </Text>
-              <Text textDecoration={"line-through"} color={"gray.600"}>
-                {Math.floor(Math.random() * 1000)}
-              </Text>
-            </Stack>
-            <Flex align={"center"}>
-              <Button
-                disabled={quantity === 1}
-                onClick={() => handleQuantity(-1)}
-              >
-                -
-              </Button>
-              <Text>{quantity}</Text>
-              <Button onClick={() => handleQuantity(1)}>+</Button>
-            </Flex>
-          </Stack>
-        </Box>
-        <Box>
-          <Box
-            padding={6}
-            lineHeight={7}
-            boxShadow={"2xl"}
-            w={350}
-            alignSelf={"flex-end"}
-            border={"0px solid black"}
-          >
-            <Flex w={300} margin={"auto"} justifyContent={"space-between"}>
-              <Text>Sub Total</Text>
-              <Text> ₹{quantity * price}</Text>
-            </Flex>
-            <Flex w={300} margin={"auto"} justifyContent={"space-between"}>
-              <Text>Shipping</Text>
-              <Text>TBD</Text>
-            </Flex>
-            <Flex w={300} margin={"auto"} justifyContent={"space-between"}>
-              <Text>Estimated Tax</Text>
-              <Text>₹0.00</Text>
-            </Flex>
-            <Flex w={300} margin={"auto"} justifyContent={"space-between"}>
-              <Text>Total Price</Text>
-              <Text>₹{quantity * price}</Text>
-            </Flex>
+              mt={-12}
+              pos={"relative"}
+              height={"220px"}
+              _after={{
+                transition: "all .3s ease",
+                content: '""',
+                w: "full",
+                h: "full",
+                pos: "absolute",
+                top: 5,
+                left: 0,
 
-            {/* <Button alignSelf={"center"} margin={"auto"} mt={10} fontSize={18}>
-              PROCEED TO CHECKOUT
-            </Button> */}
-            <Modal text={" PROCEED TO CHECKOUT"} fontSize={18}/>
-          </Box>
-        </Box>
-      </SimpleGrid>
-      
+                filter: "blur(15px)",
+                zIndex: -1,
+              }}
+              _groupHover={{
+                _after: {
+                  filter: "blur(20px)",
+                },
+              }}
+            >
+              <Image
+                rounded={"0g"}
+                height={250}
+                width={165}
+                objectFit={"cover"}
+                src={ele.image}
+              />
+            </Box>
+            <Stack
+              ml={"10px"}
+              textAlign={"left"}
+              alignSelf={"flex-start"}
+              justifySelf={"flex-end"}
+              border={"0px solid red"}
+            >
+              <Text
+                // mt={"-40px"}
+                color={"gray.500"}
+                fontSize={"sm"}
+                textTransform={"uppercase"}
+              >
+                {ele.category}
+              </Text>
+              <Heading fontSize={"2xl"} fontFamily={"body"} fontWeight={500}>
+                {ele.title}
+              </Heading>
+              <Stack direction={"row"} align={"center"}>
+                <Text fontWeight={800} fontSize={"xl"}>
+                  ₹{ele.price}
+                </Text>
+                <Text textDecoration={"line-through"} color={"gray.600"}>
+                  {Math.floor(Math.random() * 1000)}
+                </Text>
+              </Stack>
+              <Flex align={"center"}>
+                <Button
+                  disabled={quantity === 1}
+                  onClick={() => handleQuantity(-1)}
+                >
+                  -
+                </Button>
+                <Text mr={2} ml={2} fontSize={"md"} fontWeight={600}>
+                  {quantity}
+                </Text>
+                <Button onClick={() => handleQuantity(1)}>+</Button>
+              </Flex>
+            </Stack>
+          </Flex>
+          <Total price={ele.price} quantity={quantity} />
+        </SimpleGrid>
+      ))} 
     </div>
   );
 }

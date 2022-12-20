@@ -75,12 +75,12 @@ const SidebarContent = ({ onClose, ...rest }) => {
     //   pos="fixed"
       h="full"
       {...rest}>
-      <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
+      {/* <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
         <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
           Logo
         </Text>
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
-      </Flex>
+      </Flex> */}
       {LinkItems.map((link) => (
         <NavItem key={link.name} icon={link.icon}>
           {link.name}
