@@ -30,21 +30,21 @@ export default function Cart() {
     setQuantity(quantity + value);
   };
 
-  useEffect(() => {
-    axios
-      .get(`https://shoppers-in.onrender.com/dresses/${id}`)
-      .then((res) => {
-        setCart(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, [id]);
+  // useEffect(() => {
+  //   axios
+  //     .get(`https://shoppers-in.onrender.com/dresses/${id}`)
+  //     .then((res) => {
+  //       setCart(res.data);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, [id]);
 
   //const { category, image, title, price, description } = cart;
-
+  console.log("inside retyrn", cartData)
   return (
     <div style={{ marginTop: "170px", marginBottom: "70px" }}>
     
-
+        
      {cartData.map((ele) => (
         <SimpleGrid
           // justifyContent={"space-between"}
@@ -146,5 +146,5 @@ export default function Cart() {
         </SimpleGrid>
       ))} 
     </div>
-  );
+  )
 }
