@@ -17,14 +17,18 @@ import Modal from "./Modal";
 import Total from "./Total";
 
 let cartData = JSON.parse(localStorage.getItem("cartProduct")) || [];
-console.log(cartData);
-console.log(cartData[0].title)
-
+//console.log(cartData);
+//console.log(cartData[0].title)
+let sum=0;
+cartData.forEach((el)=>{
+  sum = sum+ el.price;
+})
 
 export default function Cart() {
   const { id } = useParams();
   const [cart, setCart] = useState([]);
   const [quantity, setQuantity] = useState(1);
+  const [price,setPrice] = useState(0);
 
   const handleQuantity = (value) => {
     setQuantity(quantity + value);
@@ -46,6 +50,7 @@ export default function Cart() {
     
         
      {cartData.map((ele) => (
+      
         <SimpleGrid
           // justifyContent={"space-between"}
           // align={"center"}
@@ -142,9 +147,10 @@ export default function Cart() {
               </Flex>
             </Stack>
           </Flex>
-          <Total price={ele.price} quantity={quantity} />
+          
         </SimpleGrid>
       ))} 
+      <Total price={sum} quantity={quantity} />
     </div>
   )
 }
